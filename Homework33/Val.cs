@@ -23,10 +23,10 @@ namespace Homework33
         public class AnswerData
         {
             public string _1name, _2name,_3name,county,city,phone;
-            public DateTime birthday;
+            public string birthday;
             public bool isMale;
 
-            public AnswerData(string name1, string name2, string name3, string county, string city, string phone, DateTime birthday, bool isMale)
+            public AnswerData(string name1, string name2, string name3, string county, string city, string phone, string birthday, bool isMale)
             {
                 _1name = name1;
                 _2name = name2;
@@ -53,11 +53,11 @@ namespace Homework33
 
         private void get_res_Click(object sender, EventArgs e)
         {
-            AnswerData answerData = new AnswerData(_1name.Text, _2name.Text, _3name.Text, country.Items[country.SelectedIndex].ToString(), city.Items[city.SelectedIndex].ToString(),phone.Text, date_birthday.Value, male.Checked);
+            AnswerData answerData = new AnswerData(_1name.Text, _2name.Text, _3name.Text, country.Items[country.SelectedIndex].ToString(), city.Items[city.SelectedIndex].ToString(),phone.Text, date_birthday.Value.ToString(), male.Checked);
             string fileName = "WeatherForecast.json";
             string jsonString = JsonSerializer.Serialize(answerData);
             File.WriteAllText(fileName, jsonString);
-
+            
             MessageBox.Show(File.ReadAllText(fileName));
         }
     }
